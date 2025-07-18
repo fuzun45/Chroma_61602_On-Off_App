@@ -34,7 +34,7 @@ cihazlar için- tekrarlı **On/Off çevrim** (cycle) testleri ve manuel çıkı�
   * Tercih #2 Sürücüsüz çözüm için **pyvisa-py** `pip install pyvisa-py`
 
 > **Not 1** USB-TMC yerine RS-232 kullanıyorsanız _chroma cihazının_ baud rate’ini  
-> **9600 8N1** olacak şekilde ayarlayın (kodda varsayılan budur).  
+> **19200 8N1** olacak şekilde ayarlayın (kodda varsayılan budur).  
 > **Not 2** LAN (TCPIP::…) arayüzü eklemek isterseniz `pyvisa.resources.MessageBasedResource`  
 > içeren satırlara IP URI’nızı yazmanız yeterlidir.
 
