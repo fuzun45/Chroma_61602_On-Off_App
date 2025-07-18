@@ -50,7 +50,8 @@ venv\Scripts\activate
 # 2) Gereksinimleri kur
 pip install pyvisa            # zorunlu
 pip install pyvisa-py         # NI-VISA kurmayacaksanız
-# pip install pyserial pyusb  # USB veya seri port genişletmeleri için gerekebilir
+pip install pyserial pyusb    # USB veya seri port genişletmeleri için gerekebilir
+pip install psutil zeroconf   #Hataları engellemek amaçlı
 ```
 
 NI-VISA kullanacaksanız:  
@@ -85,6 +86,7 @@ pyinstaller main.py --onefile --name Chroma61602GUI
 py -3.11-32 -m pip install pyinstaller pyvisa pyvisa-py
 py -3.11-32 -m pyinstaller main.py --onefile --noupx ^
     --hidden-import pyvisa_py --name Chroma61602GUI-x86
+pyinstaller --onefile --noupx --hidden-import pyvisa_py --hidden-import serial.tools.list_ports --hidden-import pyserial --hidden-import psutil --hidden-import zeroconf --windowed --name Chroma61602GUI
 ```
 
 * `--noupx` Defender’ın “This app can’t run on your PC” uyarılarını azaltır.  
