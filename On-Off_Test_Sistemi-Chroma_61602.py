@@ -8,7 +8,11 @@ from datetime import datetime
 
 class Chroma61602Controller:
     def __init__(self):
-        self.rm = pyvisa.ResourceManager()
+        try:
+            self.rm = pyvisa.ResourceManager()      # önce NI-VISA’yı dene
+        except pyvisa.VisaIOError:
+            self.rm = pyvisa.ResourceManager('@py') # yoksa pyvisa-py’ye geç
+        #self.rm = pyvisa.ResourceManager('@py')
         self.instrument = None
         self.visa_resource = None
         self.stop_event = threading.Event()
@@ -31,7 +35,7 @@ class Chroma61602Controller:
 
             # RS-232 (seri port) ayarları
             if 'ASRL' in self.visa_resource:
-                self.instrument.baud_rate = 9600  # Gerekirse değiştir
+                self.instrument.baud_rate = 19200  # Gerekirse değiştir
                 self.instrument.data_bits = 8
                 self.instrument.parity = pyvisa.constants.Parity.none
                 self.instrument.stop_bits = pyvisa.constants.StopBits.one
